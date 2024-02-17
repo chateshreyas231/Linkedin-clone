@@ -1,8 +1,25 @@
 import {Text, View, StyleSheet, Image} from 'react-native';
 import { Post } from '../types';
+import { FontAwesome } from '@expo/vector-icons';
 type PostListTiemProps = {
     post: Post;
 }
+
+type FooterButtonProp = {
+    text: string;
+    icon: React.ComponentProps<typeof FontAwesome>['name'];
+  };
+
+function FooterButton({ text, icon }: FooterButtonProp) {
+    return (
+      <View style={{ flexDirection: 'row' }}>
+        <FontAwesome name={icon} size={16} color="gray" />
+        <Text style={{ marginLeft: 5, color: 'gray', fontWeight: '500' }}>
+          {text}
+        </Text>
+      </View>
+    );
+  }
 
 export default function PostListItem({post}: PostListTiemProps){
     return(
@@ -18,7 +35,11 @@ export default function PostListItem({post}: PostListTiemProps){
             {post.image && (
             <Image source={{uri: post.image}} style={styles.postImage}/>
             )}
-            <Text>Footer</Text>
+            <View style={styles.footer}>
+          <FooterButton text="Like" icon="thumbs-o-up" />
+          <FooterButton text="Comment" icon="comment-o" />
+          <FooterButton text="Share" icon="share" />
+        </View>
         </View>
         
     );
@@ -53,4 +74,11 @@ const styles = StyleSheet.create({
         width: '100%',
         aspectRatio: 1,
     },
+    footer: {
+        flexDirection: 'row',
+        paddingVertical: 10,
+        justifyContent: 'space-around',
+        borderTopWidth: 0.5,
+        borderColor: 'lightgray',
+      },
 });
