@@ -6,9 +6,9 @@ type PostListTiemProps = {
 }
 
 type FooterButtonProp = {
-    text: string;
-    icon: React.ComponentProps<typeof FontAwesome>['name'];
-  };
+  text: string;
+  icon: React.ComponentProps<typeof FontAwesome>['name'];
+};
 
 function FooterButton({ text, icon }: FooterButtonProp) {
     return (
